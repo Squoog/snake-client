@@ -8,8 +8,17 @@ const connect = function() {
   });
 
   conn.setEncoding("utf8");
-  conn.write("Name: Bob");
+
+  conn.on('connect', () => {
+    console.log('Connected!');
+    conn.write("Name: Bob");
+    // setInterval(() => {
+    //   conn.write("Move: up");
+    // },1000);
+  });
+  
 
   return conn;
 };
 module.exports = connect;
+
