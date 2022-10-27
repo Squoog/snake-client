@@ -1,4 +1,10 @@
-const setupInput = function() {
+let connection;
+let fun;
+
+const setupInput = function(conn) {
+
+  connection = conn;
+
   const stdin = process.stdin;
   stdin.setRawMode(true);
   stdin.setEncoding("utf8");
@@ -14,17 +20,23 @@ const setupInput = function() {
 const handleUserInput = function(key) {
   process.stdout.write(key);
 
+  const i = function(key) {
+    fun = setInterval(() => {
+      connection.write(key);
+    }, 200);
+  };
+
   if (key === '\u0003') {
     process.stdout.write("Exiting snek game");
     process.exit();
-  } else if (key === 'W') {
-    process.stdout.write("Move: up");
-  } else if (key === 'A') {
-    process.stdout.write("Move: left");
-  } else if (key === 'S') {
-    process.stdout.write("Move: down");
-  } else if (key === 'D') {
-    process.stdout.write("Move: right");
+  } else if (key === 'w') {
+    connection.write("Move: up");
+  } else if (key === 'a') {
+    connection.write("Move: left");
+  } else if (key === 's') {
+    connection.write("Move: down");
+  } else if (key === 'd') {
+    connection.write("Move: right");
   }
 };
 

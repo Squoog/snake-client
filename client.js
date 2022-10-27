@@ -11,13 +11,16 @@ const connect = function() {
 
   conn.on('connect', () => {
     console.log('Connected!');
-    conn.write("Name: Bob");
+    conn.write("Name: Boj");
     // setInterval(() => {
     //   conn.write("Move: up");
     // },1000);
   });
   
-
+  conn.on('data', data => {
+    console.log(data);
+  })
+  
   return conn;
 };
 module.exports = connect;
