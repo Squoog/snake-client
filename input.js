@@ -1,5 +1,6 @@
 let connection;
 let fun;
+let {MOVEUP, MOVELEFT, MOVEDOWN, MOVERIGHT, P1, P2, P3} = require('./constants');
 
 const setupInput = function(conn) {
 
@@ -30,23 +31,23 @@ const handleUserInput = function(key) {
     process.stdout.write("Exiting snek game");
     process.exit();
   } else if (key === 'w') {
-    connection.write("Move: up");
+    connection.write(MOVEUP);
   } else if (key === 'a') {
-    connection.write("Move: left");
+    connection.write(MOVELEFT);
   } else if (key === 's') {
-    connection.write("Move: down");
+    connection.write(MOVEDOWN);
   } else if (key === 'd') {
-    connection.write("Move: right");
+    connection.write(MOVERIGHT);
   }
 
   else if (key === 'j'){
-    connection.write("Say: Hello, it is me!");
+    connection.write(P1);
   }
   else if (key === 'k'){
-    connection.write("Say: Hohohoh");
+    connection.write(P2);
   }
   else if (key === 'l'){
-    connection.write('Say: yeet');
+    connection.write(P3);
   }
 };
 
